@@ -27,3 +27,9 @@ export function validateImageUrl(value: string) {
     return "Enter a valid image URL";
   }
 }
+// Optional field. Same rule as the server.
+export function validatePhone(value: string) {
+  const v = value.trim();
+  if (!v) return "";
+  return /^\+?[0-9\s-]{7,15}$/.test(v) ? "" : "Enter a valid phone number";
+}

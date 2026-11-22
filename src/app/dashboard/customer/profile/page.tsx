@@ -1,7 +1,5 @@
-import PageHeader from "@/components/dashboard/PageHeader";
+import ProfileForm from "@/components/profile/ProfileForm";
 
-export default function Page() {
-  return (
-    <PageHeader title="My Profile" description="This page is built in an upcoming step." />
-  );
+export default function CustomerProfilePage() {
+  return <ProfileForm />;
 }
