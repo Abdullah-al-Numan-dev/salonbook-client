@@ -13,6 +13,11 @@ export type AuthUser = {
   isBlocked: boolean;
 };
 
+let loggingOut = false;
+export function isLoggingOut() {
+  return loggingOut;
+}
+
 export function useAuthUser() {
   const { data, isPending } = authClient.useSession();
 
@@ -32,8 +37,15 @@ export function useAuthUser() {
     user,
     isPending,
     signOut: async () => {
-      await authClient.signOut();
-      clearTokenCache();
+      loggingOut = true;
+      try {
+        await authClient.signOut();
+        clearTokenCache();
+      } finally {
+        setTimeout(() => {
+          loggingOut = false;
+        }, 3000);
+      }
     },
   };
 }
