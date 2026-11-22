@@ -1,4 +1,5 @@
 export const SALON_NAME = "SalonBook";
+export const COPYRIGHT_YEAR = 2026;
 
 export const API_URL =
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
