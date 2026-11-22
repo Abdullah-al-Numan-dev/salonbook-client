@@ -1,7 +1,5 @@
-import PageHeader from "@/components/dashboard/PageHeader";
+import AdminOverview from "@/components/dashboard/AdminOverview";
 
-export default function Page() {
-  return (
-    <PageHeader title="Admin Overview" description="This page is built in an upcoming step." />
-  );
+export default function AdminDashboardPage() {
+  return <AdminOverview />;
 }

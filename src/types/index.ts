@@ -48,3 +48,14 @@ export type CustomerStats = {
   cancelledAppointments: number;
   paidAppointments: number;
 };
+
+export type AdminStats = {
+  totalCustomers: number;
+  totalActiveServices: number;
+  totalAppointments: number;
+  pendingAppointments: number;
+  confirmedAppointments: number;
+  cancelledAppointments: number;
+  totalSuccessfulPayments: number;
+  revenue: { currency: string; total: number }[];
+};

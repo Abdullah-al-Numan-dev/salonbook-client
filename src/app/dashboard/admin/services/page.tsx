@@ -1,7 +1,5 @@
-import PageHeader from "@/components/dashboard/PageHeader";
+import ManageServices from "@/components/admin/ManageServices";
 
-export default function Page() {
-  return (
-    <PageHeader title="Manage Services" description="This page is built in an upcoming step." />
-  );
+export default function AdminServicesPage() {
+  return <ManageServices />;
 }
