@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState, type FormEvent } from "react";
+import { useMemo, useState, useEffect, type FormEvent } from "react";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import { CheckCircle2 } from "lucide-react";
@@ -15,6 +15,7 @@ import { cn, formatDate } from "@/lib/utils";
 import type { Service } from "@/types";
 
 type Slot = { time: string; available: boolean };
+type SlotsResult = { key: string; slots: Slot[]; error: string };
 
 export default function BookingForm({
   service,
@@ -29,9 +30,7 @@ export default function BookingForm({
   }, []);
 
   const [date, setDate] = useState("");
-  const [slots, setSlots] = useState<Slot[]>([]);
-  const [slotsLoading, setSlotsLoading] = useState(false);
-  const [slotsError, setSlotsError] = useState("");
+  const [slotsResult, setSlotsResult] = useState<SlotsResult | null>(null);
   const [timeSlot, setTimeSlot] = useState("");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<{ date?: string; slot?: string; message?: string }>({});
@@ -47,35 +46,41 @@ export default function BookingForm({
     return "";
   }
 
-  // Load slot availability whenever the date changes
+  const validDate = !!date && !dateProblem(date);
+  const requestKey = `${date}|${reloadKey}`;
+
+  // Load slot availability whenever the date (or a retry) changes
   useEffect(() => {
-    if (!date || dateProblem(date)) {
-      setSlots([]);
-      return;
-    }
+    if (!validDate) return;
     let cancelled = false;
-    setSlotsLoading(true);
-    setSlotsError("");
 
     api<{ data: { slots: Slot[] } }>("/api/appointments/slots", {
       auth: true,
       query: { date },
     })
       .then((res) => {
-        if (!cancelled) setSlots(res.data.slots);
+        if (!cancelled) setSlotsResult({ key: requestKey, slots: res.data.slots, error: "" });
       })
       .catch((err) => {
-        if (!cancelled) setSlotsError(getErrorMessage(err, "Could not load time slots"));
-      })
-      .finally(() => {
-        if (!cancelled) setSlotsLoading(false);
+        if (!cancelled) {
+          setSlotsResult({
+            key: requestKey,
+            slots: [],
+            error: getErrorMessage(err, "Could not load time slots"),
+          });
+        }
       });
 
     return () => {
       cancelled = true;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [date, reloadKey]);
+  }, [validDate, date, requestKey]);
+
+  // The stored result is only valid if it belongs to the current request
+  const slotsReady = slotsResult?.key === requestKey;
+  const slotsLoading = validDate && !slotsReady;
+  const slots = slotsReady && slotsResult ? slotsResult.slots : [];
+  const slotsError = slotsReady && slotsResult ? slotsResult.error : "";
 
   function handleDateChange(value: string) {
     setDate(value);
@@ -161,7 +166,7 @@ export default function BookingForm({
 
       <div>
         <p className="mb-1.5 text-sm font-medium">Available time slot</p>
-        {!date || dateProblem(date) ? (
+        {!validDate ? (
           <p className="text-sm text-muted">Choose a valid date to see time slots.</p>
         ) : slotsLoading ? (
           <p className="flex items-center gap-2 text-sm text-muted">

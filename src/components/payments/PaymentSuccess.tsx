@@ -38,7 +38,6 @@ export default function PaymentSuccess() {
     let cancelled = false;
     let timer: ReturnType<typeof setTimeout>;
 
-    setView("checking");
 
     async function check(attempt: number) {
       try {
@@ -69,6 +68,11 @@ export default function PaymentSuccess() {
       clearTimeout(timer);
     };
   }, [sessionId, runKey]);
+
+  function retry() {
+    setView("checking");
+    setRunKey((k) => k + 1);
+  }
 
   const shell = (children: React.ReactNode) => (
     <Container className="flex justify-center py-12 sm:py-16">
@@ -180,7 +184,7 @@ export default function PaymentSuccess() {
           appointment will show as paid shortly. Check My Appointments in a minute.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Button onClick={() => setRunKey((k) => k + 1)}>Check again</Button>
+          <Button onClick={retry}>Check again</Button>
           <Link
             href="/dashboard/customer/appointments"
             className={buttonStyles({ variant: "outline" })}
@@ -200,7 +204,7 @@ export default function PaymentSuccess() {
         We could not reach the server. Your payment is safe. Try again in a moment.
       </p>
       <div className="mt-6 flex flex-wrap justify-center gap-3">
-        <Button onClick={() => setRunKey((k) => k + 1)}>Try again</Button>
+        <Button onClick={retry}>Try again</Button>
         <Link
           href="/dashboard/customer/appointments"
           className={buttonStyles({ variant: "outline" })}

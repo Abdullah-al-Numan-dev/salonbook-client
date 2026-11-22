@@ -56,7 +56,7 @@ export default function MyAppointments() {
         auth: true,
         body: { appointmentId: a._id },
       });
-      window.location.href = res.data.url; // on success the browser leaves for Stripe
+      window.location.assign(res.data.url); // on success the browser leaves for Stripe
     } catch (err) {
       toast.error(getErrorMessage(err, "Could not start the payment"));
       setPayingId(null);

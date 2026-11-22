@@ -36,9 +36,11 @@ export default function ServiceBrowser() {
   const debouncedSearch = useDebounce(searchText, 400);
 
   // Keep the box in sync when the URL changes from outside (back button, links)
-  useEffect(() => {
+  const [prevUrlSearch, setPrevUrlSearch] = useState(urlSearch);
+  if (urlSearch !== prevUrlSearch) {
+    setPrevUrlSearch(urlSearch);
     setSearchText(urlSearch);
-  }, [urlSearch]);
+  }
 
   function updateParams(changes: Record<string, string | null>, resetPage = true) {
     const params = new URLSearchParams(searchParams.toString());

@@ -3,29 +3,46 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { getErrorMessage } from "@/lib/api";
 
-export function useFetch<T>(fetcher: () => Promise<T>, deps: unknown[] = []) {
-  const [data, setData] = useState<T | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const fetcherRef = useRef(fetcher);
-  fetcherRef.current = fetcher;
+type Result<T> = { sig: string; data: T | null; error: string };
 
-  const run = useCallback(async () => {
-    setLoading(true);
-    setError("");
-    try {
-      setData(await fetcherRef.current());
-    } catch (err) {
-      setError(getErrorMessage(err, "Could not load data"));
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+export function useFetch<T>(fetcher: () => Promise<T>, deps: unknown[] = []) {
+  const [reloadKey, setReloadKey] = useState(0);
+  const [result, setResult] = useState<Result<T> | null>(null);
+
+  const fetcherRef = useRef(fetcher);
+  useEffect(() => {
+    fetcherRef.current = fetcher;
+  });
+
+  // One string describes "which request is current". All deps are plain values.
+  const sig = JSON.stringify([...deps, reloadKey]);
 
   useEffect(() => {
-    run();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, deps);
+    let cancelled = false;
+    fetcherRef
+      .current()
+      .then((data) => {
+        if (!cancelled) setResult({ sig, data, error: "" });
+      })
+      .catch((err) => {
+        if (!cancelled) {
+          setResult({ sig, data: null, error: getErrorMessage(err, "Could not load data") });
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [sig]);
 
-  return { data, loading, error, refetch: run };
+  const refetch = useCallback(() => setReloadKey((k) => k + 1), []);
+
+  // Loading means the stored result belongs to an older request
+  const current = result && result.sig === sig ? result : null;
+
+  return {
+    data: current?.data ?? null,
+    loading: current === null,
+    error: current?.error ?? "",
+    refetch,
+  };
 }

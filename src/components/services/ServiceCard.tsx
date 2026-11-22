@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Clock } from "lucide-react";
-import StatusBadge from "@/components/ui/StatusBadge";
 import { buttonStyles } from "@/components/ui/Button";
 import { formatDuration, formatPrice } from "@/lib/utils";
 import type { Service } from "@/types";
