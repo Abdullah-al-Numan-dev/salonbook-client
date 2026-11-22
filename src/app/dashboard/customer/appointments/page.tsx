@@ -1,7 +1,5 @@
-import PageHeader from "@/components/dashboard/PageHeader";
+import MyAppointments from "@/components/appointments/MyAppointments";
 
-export default function Page() {
-  return (
-    <PageHeader title="My Appointments" description="This page is built in an upcoming step." />
-  );
+export default function CustomerAppointmentsPage() {
+  return <MyAppointments />;
 }

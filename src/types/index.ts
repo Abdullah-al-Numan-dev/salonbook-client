@@ -18,3 +18,33 @@ export type Pagination = {
   total: number;
   totalPages: number;
 };
+
+export type AppointmentStatus = "pending" | "confirmed" | "cancelled";
+export type PaymentStatus = "unpaid" | "paid";
+
+export type Appointment = {
+  _id: string;
+  serviceId: string;
+  customerId: string;
+  appointmentDate: string; // YYYY-MM-DD
+  timeSlot: string;
+  message: string;
+  servicePrice: number;
+  paymentStatus: PaymentStatus;
+  status: AppointmentStatus;
+  createdAt: string;
+  service?: {
+    serviceName?: string;
+    category?: string;
+    image?: string;
+    duration?: number;
+  };
+};
+
+export type CustomerStats = {
+  totalAppointments: number;
+  pendingAppointments: number;
+  confirmedAppointments: number;
+  cancelledAppointments: number;
+  paidAppointments: number;
+};

@@ -1,7 +1,5 @@
-import PageHeader from "@/components/dashboard/PageHeader";
+import CustomerOverview from "@/components/dashboard/CustomerOverview";
 
-export default function Page() {
-  return (
-    <PageHeader title="Customer Overview" description="This page is built in an upcoming step." />
-  );
+export default function CustomerDashboardPage() {
+  return <CustomerOverview />;
 }
