@@ -1,10 +1,7 @@
-import Container from "@/components/ui/Container";
+import PageHeader from "@/components/dashboard/PageHeader";
 
-export default function AdminDashboardPage() {
+export default function Page() {
   return (
-    <Container className="py-16">
-      <h1 className="text-3xl font-semibold">Admin Dashboard</h1>
-      <p className="mt-2 text-muted">Placeholder. The real dashboard comes in a later step.</p>
-    </Container>
+    <PageHeader title="Admin Overview" description="This page is built in an upcoming step." />
   );
 }
