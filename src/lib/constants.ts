@@ -1,5 +1,7 @@
 export const SALON_NAME = "SalonBook";
 export const COPYRIGHT_YEAR = 2026;
+export const SALON_TIMEZONE = "Asia/Dhaka";
+export const MAX_BOOKING_DAYS_AHEAD = 60;
 
 export const API_URL =
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";

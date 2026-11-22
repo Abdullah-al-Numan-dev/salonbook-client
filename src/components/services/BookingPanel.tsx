@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { CalendarCheck, Clock, Info } from "lucide-react";
 import Button, { buttonStyles } from "@/components/ui/Button";
+import BookingForm from "./BookingForm";
 import { useAuthUser } from "@/hooks/useAuthUser";
 import { formatDuration, formatPrice } from "@/lib/utils";
 import type { Service } from "@/types";
@@ -42,9 +43,7 @@ export default function BookingPanel({ service }: { service: Service }) {
             Book Appointment
           </Button>
         ) : (
-          <div id="booking-form-slot" className="text-sm text-muted">
-            The appointment form is added in the next commit.
-          </div>
+          <BookingForm service={service} onCancel={() => setOpen(false)} />
         )}
       </div>
 
