@@ -59,3 +59,53 @@ export type AdminStats = {
   totalSuccessfulPayments: number;
   revenue: { currency: string; total: number }[];
 };
+
+export type AdminAppointment = Omit<Appointment, "service"> & {
+  confirmedAt?: string;
+  cancelledAt?: string;
+  cancelledBy?: string;
+  paidAt?: string;
+  service?: {
+    _id?: string;
+    serviceName?: string;
+    category?: string;
+    image?: string;
+    duration?: number;
+  };
+  customer?: {
+    _id?: string;
+    name?: string;
+    email?: string;
+    image?: string;
+    phone?: string;
+  };
+};
+
+export type AdminUser = {
+  _id: string;
+  name: string;
+  email: string;
+  image?: string | null;
+  phone?: string;
+  role: "admin" | "customer";
+  isBlocked?: boolean;
+  emailVerified?: boolean;
+  createdAt?: string;
+};
+
+export type AdminUserDetails = AdminUser & {
+  appointmentStats: { total: number; pending: number; confirmed: number; cancelled: number };
+};
+
+export type Transaction = {
+  _id: string;
+  amount: number;
+  currency: string;
+  stripeSessionId: string;
+  status: "paid" | "failed";
+  createdAt: string;
+  appointmentDate?: string;
+  timeSlot?: string;
+  serviceName?: string;
+  customer?: { name?: string; email?: string; image?: string };
+};

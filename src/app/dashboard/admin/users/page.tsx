@@ -1,7 +1,5 @@
-import PageHeader from "@/components/dashboard/PageHeader";
+import ManageUsers from "@/components/admin/ManageUsers";
 
-export default function Page() {
-  return (
-    <PageHeader title="Manage Users" description="This page is built in an upcoming step." />
-  );
+export default function AdminUsersPage() {
+  return <ManageUsers />;
 }

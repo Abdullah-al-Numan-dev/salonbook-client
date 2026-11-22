@@ -1,7 +1,5 @@
-import PageHeader from "@/components/dashboard/PageHeader";
+import ManageAppointments from "@/components/admin/ManageAppointments";
 
-export default function Page() {
-  return (
-    <PageHeader title="Manage Appointments" description="This page is built in an upcoming step." />
-  );
+export default function AdminAppointmentsPage() {
+  return <ManageAppointments />;
 }

@@ -1,7 +1,5 @@
-import PageHeader from "@/components/dashboard/PageHeader";
+import Transactions from "@/components/admin/Transactions";
 
-export default function Page() {
-  return (
-    <PageHeader title="Transactions" description="This page is built in an upcoming step." />
-  );
+export default function AdminTransactionsPage() {
+  return <Transactions />;
 }
