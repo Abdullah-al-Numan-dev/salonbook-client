@@ -110,7 +110,7 @@ export default function ManageServices() {
               className={cn(
                 "rounded-full border px-4 py-1.5 text-sm font-medium capitalize transition-colors",
                 status === f
-                  ? "border-primary bg-primary text-white"
+                  ? "border-primary bg-primary text-slate-950"
                   : "border-border bg-surface hover:border-primary hover:text-primary"
               )}
             >

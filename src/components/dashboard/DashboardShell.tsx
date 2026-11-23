@@ -80,7 +80,7 @@ export default function DashboardShell({
             className="h-10 w-10 rounded-full object-cover"
           />
         ) : (
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary font-semibold text-white">
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary font-semibold text-slate-950">
             {initial}
           </span>
         )}
@@ -100,7 +100,7 @@ export default function DashboardShell({
             className={cn(
               "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
               activeHref === href
-                ? "bg-primary text-white"
+                ? "bg-primary text-slate-950"
                 : "text-foreground hover:bg-primary-soft"
             )}
           >
@@ -121,7 +121,7 @@ export default function DashboardShell({
         <button
           type="button"
           onClick={handleLogout}
-          className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-danger hover:bg-red-50"
+          className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-danger hover:bg-danger/10"
         >
           <LogOut className="h-5 w-5" aria-hidden="true" />
           Logout

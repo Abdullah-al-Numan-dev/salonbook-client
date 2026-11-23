@@ -53,7 +53,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="mt-auto bg-[#2b1d22] text-white/80">
+    <footer className="mt-auto border-t border-border bg-[#070d17] text-slate-300">
       <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <Logo light />

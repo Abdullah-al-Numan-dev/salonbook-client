@@ -171,7 +171,7 @@ export default function SignUpForm() {
                   }}
                   className={cn(
                     "rounded-md px-2.5 py-1 font-medium",
-                    imageMode === mode ? "bg-primary text-white" : "text-muted hover:text-foreground"
+                    imageMode === mode ? "bg-primary text-slate-950" : "text-muted hover:text-foreground"
                   )}
                 >
                   {mode === "upload" ? "Upload" : "URL"}

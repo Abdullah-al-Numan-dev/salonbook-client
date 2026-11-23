@@ -199,10 +199,10 @@ export default function BookingForm({
                   className={cn(
                     "rounded-lg border px-2 py-2 text-xs font-medium transition-colors sm:text-sm",
                     timeSlot === s.time
-                      ? "border-primary bg-primary text-white"
+                      ? "border-primary bg-primary text-slate-950"
                       : s.available
                         ? "border-border bg-surface hover:border-primary hover:text-primary"
-                        : "cursor-not-allowed border-border bg-stone-100 text-muted line-through"
+                        : "cursor-not-allowed border-border bg-slate-800/60 text-muted line-through"
                   )}
                 >
                   {s.time}

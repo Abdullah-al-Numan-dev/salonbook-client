@@ -9,13 +9,14 @@ export default function ToasterProvider() {
       toastOptions={{
         duration: 4000,
         style: {
-          background: "#ffffff",
-          color: "#2b1d22",
-          border: "1px solid #eaddd8",
+          background: "#0b1421",
+          color: "#e7eef6",
+          border: "1px solid #1b2a3b",
+          boxShadow: "0 12px 32px -12px rgba(0,0,0,.8)",
           fontSize: "14px",
         },
-        success: { iconTheme: { primary: "#15803d", secondary: "#ffffff" } },
-        error: { iconTheme: { primary: "#b91c1c", secondary: "#ffffff" } },
+        success: { iconTheme: { primary: "#34d399", secondary: "#04141a" } },
+        error: { iconTheme: { primary: "#fb7185", secondary: "#04141a" } },
       }}
     />
   );

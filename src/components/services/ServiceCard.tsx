@@ -7,7 +7,7 @@ import type { Service } from "@/types";
 export default function ServiceCard({ service }: { service: Service }) {
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-xl border border-border bg-surface shadow-sm transition-shadow hover:shadow-md">
-      <div className="relative aspect-[4/3] overflow-hidden bg-primary-soft">
+      <div className="relative aspect-[16/10] overflow-hidden bg-primary-soft">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={service.image}
@@ -25,7 +25,7 @@ export default function ServiceCard({ service }: { service: Service }) {
         <p className="mt-2 line-clamp-2 text-sm text-muted">{service.description}</p>
 
         <div className="mt-4 flex items-center justify-between">
-          <span className="text-lg font-semibold text-primary-dark">
+          <span className="text-lg font-semibold text-primary">
             {formatPrice(service.price)}
           </span>
           <span className="inline-flex items-center gap-1 text-sm text-muted">
@@ -48,7 +48,7 @@ export default function ServiceCard({ service }: { service: Service }) {
 export function ServiceCardSkeleton() {
   return (
     <div className="overflow-hidden rounded-xl border border-border bg-surface">
-      <div className="aspect-[4/3] animate-pulse bg-primary-soft" />
+      <div className="aspect-[16/10] animate-pulse bg-primary-soft" />
       <div className="space-y-3 p-5">
         <div className="h-3 w-24 animate-pulse rounded bg-primary-soft" />
         <div className="h-5 w-3/4 animate-pulse rounded bg-primary-soft" />

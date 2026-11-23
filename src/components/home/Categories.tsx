@@ -53,7 +53,7 @@ export default function Categories() {
                 href={`/services?category=${encodeURIComponent(category)}`}
                 className="group flex flex-col items-center rounded-xl border border-border bg-surface p-6 text-center transition-all hover:-translate-y-0.5 hover:border-primary hover:shadow-md"
               >
-                <span className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary-soft text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+                <span className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary-soft text-primary transition-colors group-hover:bg-primary group-hover:text-slate-950">
                   <Icon className="h-6 w-6" aria-hidden="true" />
                 </span>
                 <span className="font-semibold">{category}</span>

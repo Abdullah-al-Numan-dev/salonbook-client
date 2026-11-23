@@ -75,7 +75,7 @@ export default function Navbar() {
       className="h-9 w-9 rounded-full object-cover"
     />
   ) : (
-    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-sm font-semibold text-white">
+    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-sm font-semibold text-slate-950">
       {initial}
     </span>
   );
@@ -151,7 +151,7 @@ export default function Navbar() {
                     type="button"
                     role="menuitem"
                     onClick={handleLogout}
-                    className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-danger hover:bg-red-50"
+                    className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-danger hover:bg-danger/10"
                   >
                     <LogOut className="h-4 w-4" aria-hidden="true" />
                     Logout
