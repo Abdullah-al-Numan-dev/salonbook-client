@@ -3,8 +3,12 @@ export const COPYRIGHT_YEAR = 2026;
 export const SALON_TIMEZONE = "Asia/Dhaka";
 export const MAX_BOOKING_DAYS_AHEAD = 60;
 
+// Production uses same-origin /api/* paths, rewritten to the Express API by next.config.ts.
+// Development keeps talking to the local server directly.
 export const API_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+  process.env.NODE_ENV === "production"
+    ? ""
+    : process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 export const CATEGORIES = [
   "Haircut & Styling",
